@@ -1,5 +1,5 @@
 /*******************************************************************************
- * d77 from_string - C++14 conversion from string to any type.
+ * d77 from_string - C++11 conversion from string to any type.
  * Copyright (C) 2020 Daniele Pallastrelli
  *
  * Boost Software License - Version 1.0 - August 17th, 2003
