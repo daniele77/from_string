@@ -30,26 +30,6 @@
 #ifndef D77_FROMSTRING_H_
 #define D77_FROMSTRING_H_
 
-// #define D77_FROMSTRING_USE_BOOST
-
-#ifdef D77_FROMSTRING_USE_BOOST
-
-#include <boost/lexical_cast.hpp>
-
-namespace d77
-{
-    
-template <typename T>
-inline
-T from_string(const std::string& s)
-{
-    return boost::lexical_cast<T>(s);
-}
-
-} // namespace d77
-
-#else
-
 #include <exception>
 #include <string>
 #include <sstream>
@@ -77,7 +57,7 @@ inline std::string from_string(const std::string& s)
 }
 
 template <>
-inline nullptr_t from_string(const std::string& /*s*/)
+inline std::nullptr_t from_string(const std::string& /*s*/)
 {
     return nullptr;
 }
@@ -121,7 +101,7 @@ inline T signed_from_string(std::string s)
 {
     if (s.empty())
         throw bad_conversion();
-    using U = std::make_unsigned_t<T>;
+    using U = typename std::make_unsigned<T>::type;
     if (s[0] == '-')
     {
         s = s.substr(1);
@@ -268,8 +248,5 @@ inline T from_string(const std::string& s)
 }
 
 } // d77
-
-
-#endif // CLI_FROMSTRING_USE_BOOST
 
 #endif // D77_FROMSTRING_H_

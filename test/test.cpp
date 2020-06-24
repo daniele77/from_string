@@ -62,29 +62,29 @@ struct signed_overflow
     static_assert(std::is_signed<T>::value, "Requires signed type");
 
     // return max as T and as string
-    static constexpr pair<T,string> max()
+    static pair<T,string> max()
     {
-        const T value = numeric_limits<T>::max();
+        constexpr T value = numeric_limits<T>::max();
         return make_pair(value, to_string(value));
     }
     // return a string of max+1
-    static constexpr string max_overflow()
+    static string max_overflow()
     {
-        const T max = numeric_limits<T>::max();
+        constexpr T max = numeric_limits<T>::max();
         string result = to_string(max);
         inc(result);
         return result;
     }
     // return min as T and as string
-    static constexpr pair<T,string> min()
+    static pair<T,string> min()
     {
-        const T value = numeric_limits<T>::min();
+        constexpr T value = numeric_limits<T>::min();
         return make_pair(value, to_string(value));
     }
     // return a string of min-1
-    static constexpr string min_overflow()
+    static string min_overflow()
     {
-        const T min = numeric_limits<T>::min();
+        constexpr T min = numeric_limits<T>::min();
         string result = to_string(min);
         result.substr(1); // remove the '-'
         inc(result);
@@ -99,15 +99,15 @@ struct unsigned_overflow
     static_assert(std::is_unsigned<T>::value, "Requires unsigned type");
 
     // return max as T and as string
-    static constexpr pair<T,string> max()
+    static pair<T,string> max()
     {
-        const unsigned long long int value = numeric_limits<T>::max();
+        constexpr unsigned long long int value = numeric_limits<T>::max();
         return make_pair(value, to_string(value));
     }
     // return a string of max+1
-    static constexpr string max_overflow()
+    static string max_overflow()
     {
-        const unsigned long long int max = numeric_limits<T>::max();
+        constexpr unsigned long long int max = numeric_limits<T>::max();
         string result = to_string(max);
         inc(result);
         return result;
